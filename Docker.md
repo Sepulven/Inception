@@ -12,6 +12,8 @@ https://docs.docker.com/reference/dockerfile/
 
 	-t allows you to name the the image
 
+Docker gathers all the files and subdirectories in this directory and sends them to the Docker daemon.
+
 3. Run the Docker Container
 	```sudo docker run <image's name>```
 
@@ -31,7 +33,7 @@ https://docs.docker.com/reference/dockerfile/
 3. Remove all unused images (not just dangling):
 	```docker image prune -a```
 
-## Dockefile
+## Dockerfile
 
 	### RUN
 		Executes command in the container during the build process.(Build time)
@@ -42,4 +44,12 @@ https://docs.docker.com/reference/dockerfile/
 	### WORKDIR
 		Changes working directory. (Works like cd)
 	(<https://docs.docker.com/reference/dockerfile/)[https://docs.docker.com/reference/dockerfile/]
-		
+
+
+## .dockerignore file
+
+	The .dockerignore file ignores all the files the same way .gitignore does, it doesn't send the specified files to the build
+	context. Thus it reduces the size of the image.
+
+### Bried History of Container in OS
+	https://d2iq.com/blog/brief-history-containers

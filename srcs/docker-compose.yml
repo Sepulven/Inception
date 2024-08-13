@@ -1,0 +1,10 @@
+# Made by: Arthur Aguiar a,k,a: asepulve (13/08/2024)
+
+services:
+  nginx:
+    container_name: nginx
+    build:
+        context: ./requirements/nginx
+        dockerfile: Dockerfile
+
+
