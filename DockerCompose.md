@@ -14,4 +14,13 @@ Compose simplifies the control of your entire application stack, making it easy 
 
 
 
+
+## Note:
+	When running docker composer from a directory that doesn't have the docker-compose.yml we can specify the file for the configuration file using the ```-f [PATH]``` flag.
+
+	Example:
+
+	```docker composer -f ./srcs/docker-compose.yml```
+	(https://docs.docker.com/reference/cli/docker/compose/)[Link]
+
 https://docs.docker.com/compose/

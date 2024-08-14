@@ -53,3 +53,8 @@ Docker gathers all the files and subdirectories in this directory and sends them
 
 ### Bried History of Container in OS
 	https://d2iq.com/blog/brief-history-containers
+
+
+### Choosing between RUN, CMD and ENTRYPOINT
+
+https://www.docker.com/blog/docker-best-practices-choosing-between-run-cmd-and-entrypoint/
