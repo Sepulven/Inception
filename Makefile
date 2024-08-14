@@ -3,5 +3,5 @@
 all :
 	docker compose -f ./srcs/docker-compose.yml build
 up:
+	docker compose -f ./srcs/docker-compose.yml up
 
-	echo "Hello world";
