@@ -7,11 +7,9 @@ services:
         context: ./requirements/nginx
         dockerfile: Dockerfile
     ports:
-        - "80:80"
-	- "443:443"
+        - "8080:80"
+#- "443:443"
     restart: on-failure
-    
-
 
 #env_path:
 #        -path: ./.env

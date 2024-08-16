@@ -23,3 +23,10 @@ How They Work Together
         Establish Keys: They use asymmetric encryption (public/private keys) to securely exchange a symmetric key for encrypting the rest of the session’s data.
 
     Session Encryption: Once the handshake is complete and a symmetric key is established, this key is used to encrypt and decrypt the data exchanged between the client and server, ensuring privacy and data integrity.
+
+
+### Note: openssl req -> creates the certificate and the key
+
+The following link has the documentation of the flags:
+	https://docs.openssl.org/master/man1/openssl-req/
+	https://linux.die.net/man/1/req
