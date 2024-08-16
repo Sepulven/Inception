@@ -32,6 +32,7 @@ RUN openssl req -x509 -nodes -newkey rsa:4096 \
     -subj "/C=PT/L=Lisboa/ST=Lisboa/O=42Lisbon/"
 
 
+
 # Notes about openssl
 #  openssl: It's a toolkit that provides tools and libraries for secure communication
 #  req: creates and processes certificate requests in PKCS#10 format. It can additionally create self signed certificates for use as root CAs for example. 
@@ -45,7 +46,7 @@ RUN openssl req -x509 -nodes -newkey rsa:4096 \
 #  Notes: By default this key has the expiration date for 30 days from the creation of the keys and certificates. We can change that with another flags -days [values]
 
 #Copies our nginx file to the file system(COPY does replace the file)
-#COPY ./nginx.conf /etc/nginx/
+COPY ./nginx.conf /etc/nginx/
 
 # Copies the bash script to the Desktop
 COPY ./nginx.sh /home/
