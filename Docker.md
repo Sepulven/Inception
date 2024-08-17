@@ -1,7 +1,3 @@
-
-
-
-
 # Docker Files References
 https://docs.docker.com/reference/dockerfile/
 
@@ -16,8 +12,6 @@ Docker gathers all the files and subdirectories in this directory and sends them
 
 3. Run the Docker Container
 	```sudo docker run <image's name>```
-
-
 
 4. List all images (including intermediate layers):
 	```docker images -a```
@@ -45,6 +39,12 @@ Docker gathers all the files and subdirectories in this directory and sends them
 		Changes working directory. (Works like cd)
 	(<https://docs.docker.com/reference/dockerfile/)[https://docs.docker.com/reference/dockerfile/]
 
+
+# Note enter a running container:
+	sudo docker exec -it [container_name] /bin/sh
+	
+	-i -> Keeps STDIN open even if not attached, enabling interaction
+	-t -> Allocates a pseudo-TTY, providing an interative interface
 
 ## .dockerignore file
 

@@ -27,8 +27,8 @@ RUN mkdir /etc/nginx/ssl
 
 # Run the openssl toolkit with req to create a key and ssl certificate with the given flags
 RUN openssl req -x509 -nodes -newkey rsa:4096 \
-    -keyout /etc/nginx/ssl/asepulve.crt \
-    -out   /etc/nginx/ssl/asepulve.key \
+    -keyout /etc/nginx/ssl/asepulve.key \
+    -out   /etc/nginx/ssl/asepulve.crt \
     -subj "/C=PT/L=Lisboa/ST=Lisboa/O=42Lisbon/"
 
 
@@ -46,10 +46,16 @@ RUN openssl req -x509 -nodes -newkey rsa:4096 \
 #  Notes: By default this key has the expiration date for 30 days from the creation of the keys and certificates. We can change that with another flags -days [values]
 
 #Copies our nginx file to the file system(COPY does replace the file)
-COPY ./nginx.conf /etc/nginx/
+COPY ./default_inception.conf /etc/nginx/conf.d
+
+# Copies the main nginx file with my specifications
+COPY ./nginx.conf /etc/nginx/nginx.conf
 
 # Copies the bash script to the Desktop
 COPY ./nginx.sh /home/
+
+# Copies the index.html in order to test SSL
+COPY ./index.html /var/www/html/index.html
 
 # Grant permission to the script
 RUN chmod +x /home/nginx.sh
@@ -58,7 +64,7 @@ RUN chmod +x /home/nginx.sh
 EXPOSE 80
 
 # Exposes port 443 for SSL/TLS configuration
-#EXPOSE 443
+EXPOSE 443
 
 # Runs the entrypoint script given it absolute path
 ENTRYPOINT ["/home/nginx.sh"]
