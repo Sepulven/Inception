@@ -29,7 +29,7 @@ RUN mkdir /etc/nginx/ssl
 RUN openssl req -x509 -nodes -newkey rsa:4096 \
     -keyout /etc/nginx/ssl/asepulve.key \
     -out   /etc/nginx/ssl/asepulve.crt \
-    -subj "/C=PT/L=Lisboa/ST=Lisboa/O=42Lisbon/"
+    -subj "/C=PT/L=Lisboa/ST=Lisboa/O=42Lisbon/OU=asepulve"
 
 
 
@@ -49,7 +49,7 @@ RUN openssl req -x509 -nodes -newkey rsa:4096 \
 COPY ./default_inception.conf /etc/nginx/conf.d
 
 # Copies the main nginx file with my specifications
-COPY ./nginx.conf /etc/nginx/nginx.conf
+#COPY ./nginx.conf /etc/nginx/nginx.conf
 
 # Copies the bash script to the Desktop
 COPY ./nginx.sh /home/

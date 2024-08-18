@@ -30,3 +30,32 @@ How They Work Together
 The following link has the documentation of the flags:
 	https://docs.openssl.org/master/man1/openssl-req/
 	https://linux.die.net/man/1/req
+
+### Note: The order in nginx file matter
+
+Nginx reads the files from top to bottom and directives that are first shown gets executed first.
+This property matters for location.
+
+### Note: Location strucuture
+
+Link -> http://nginx.org/en/docs/http/ngx_http_core_module.html#location
+
+The strucuture of a ```location``` block is:
+	location [modifier] [URI] {
+	    ...
+	}
+
+
+Here, [modifier] is optional and can change how NGINX processes the request, and [URI] specifies the pattern to match against the incoming request URI.
+
+    Choose the Modifier: Depending on your needs, you may use one of several modifiers:
+        =: Exact match.
+        ~: Case-sensitive regular expression match.
+        ~*: Case-insensitive regular expression match.
+        ^~: Longest non-regex match.
+
+	However, the concept of the "longest non-regex match" with the ^~ modifier is slightly nuanced. The ^~ modifier itself does not define a length; rather, it specifies a type of match (prefix) with priority over regex matches. The actual length of the match is determined by the longest prefix that matches the request URI among all locations defined with the ^~ modifier. If multiple locations with the ^~ modifier could potentially match the.
+
+	Nginx uses specific order to determine which ```location``` block to execute based on their specifity. Thus ```location /images/``` doesn't get executed and ```location /images/photo.png``` gets executed given the uri /images/photo.png.
+
+
