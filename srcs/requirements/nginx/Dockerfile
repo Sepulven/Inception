@@ -46,7 +46,7 @@ RUN openssl req -x509 -nodes -newkey rsa:4096 \
 #  Notes: By default this key has the expiration date for 30 days from the creation of the keys and certificates. We can change that with another flags -days [values]
 
 #Copies our nginx file to the file system(COPY does replace the file)
-COPY ./default_inception.conf /etc/nginx/conf.d
+COPY ./default.conf /etc/nginx/conf.d
 
 # Copies the main nginx file with my specifications
 #COPY ./nginx.conf /etc/nginx/nginx.conf
