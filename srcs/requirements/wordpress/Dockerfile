@@ -20,6 +20,8 @@ RUN apt-get install -y vim
 
 RUN apt-get -y php
 
+RUN apt-get -y php-fpm
+
 # !!! Very important
 # This is the actual list
 # -> https://make.wordpress.org/hosting/handbook/server-environment/#php-extensions
