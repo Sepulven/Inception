@@ -24,3 +24,17 @@ Compose simplifies the control of your entire application stack, making it easy 
 	(https://docs.docker.com/reference/cli/docker/compose/)[Link]
 
 https://docs.docker.com/compose/
+
+
+#Default .env file 
+
+Automatic Loading: Docker Compose automatically loads environment variables from a .env file located in the same directory as the docker-compose.yml file. You do not need to specify the path for this .env file using env_file in your docker-compose.yml.
+
+We can define this inside a service definition
+
+env_file:
+  - path: ./default.env
+    required: true # default
+  - path: ./override.env
+    required: false
+
