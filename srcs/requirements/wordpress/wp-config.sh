@@ -53,3 +53,6 @@ mkdir -p /run/php
 
 # The /run/php directory is a temporary filesystem location used by PHP and its associated processes, like PHP-FPM (FastCGI Process Manager), to store runtime data. Here’s a closer look at its purpose:
 
+
+# Looks for the attr. listen inside the www.conf and changes it our port
+sed -i 's|listen = /run/php/php7.4-fpm.sock|listen = 9000|g' /etc/php/7.4/fpm/pool.d/www.conf

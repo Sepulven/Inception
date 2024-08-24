@@ -49,10 +49,11 @@ RUN apt-get install -y php-intl # Enable to perform locale-aware operations incl
 RUN apt-get install -y php-mbstring # Used to properly handle UTF8 text. 
 
 
-# This packages does exists
+# This packages doesn't exists
 #RUN apt-get install -y php-openssl # SSL-based connections to other hosts. 
 
 #RUN apt-get install -y php-pcre # Increases performance of pattern matching in code searches. 
+
 
 RUN apt-get install -y php-xml # Used for XML parsing, such as from a third-party site. 
 RUN apt-get install -y php-zip #  Used for decompressing Plugins, Themes, and WordPress update packages. 
@@ -70,7 +71,6 @@ RUN rm /tmp/wp-config.sh
 
 EXPOSE 9000
 
-
 #CMD tail -f > /dev/null
 
 # Runs php-fpm in foreground mode
@@ -79,6 +79,5 @@ EXPOSE 9000
 
 # -R --allow-to-run-as-root -> Allows pool to run as root
 # -F --nodaemonize -> Force to stay in foreground and ignore daemonize option from configuration file.
-
 
 ENTRYPOINT ["/usr/sbin/php-fpm7.4", "--nodaemonize",  "--allow-to-run-as-root"]

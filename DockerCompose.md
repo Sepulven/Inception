@@ -38,3 +38,8 @@ env_file:
   - path: ./override.env
     required: false
 
+
+# Networking in DockerCompose:
+
+https://docs.docker.com/compose/networking/
+

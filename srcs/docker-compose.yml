@@ -2,6 +2,9 @@
 
 # The .env file is loaded from the same directory in which the docker-compole.yml file is
 
+
+# NGINX: (Nginx)
+#
 services:
   nginx:
     container_name: nginx
@@ -11,16 +14,28 @@ services:
     ports:
         - "8080:80" # The port 80 in the hostmachine is busy
         - "443:443"
+    networks:
+        - inception
     restart: on-failure
+
+# Wordpress: (Wordpress+php-fpm) 
+#
   wordpress:
     container_name: wordpress
     build:
         context: ./requirements/wordpress
         dockerfile: Dockerfile
-    ports:
+    expose:
         - "9000:9000"
+    networks:
+        - inception
  #   env_file:
  #      - path: /home/asepulve/Desktop -> path to the .env
  #        required: true # default
     restart: on-failure
 
+
+networks:
+    inception:
+        driver: bridge # Eliminates the need for routing between different network segments.
+        name: inception # Forces the name of the network ot be inception
