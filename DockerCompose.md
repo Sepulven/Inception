@@ -43,3 +43,14 @@ env_file:
 
 https://docs.docker.com/compose/networking/
 
+# Volumes in DockerCompose:
+
+## What are Docker Volumes?
+
+    -  Volumes are a mechanism for storing data outside of containers.
+    - They are managed by Docker and stored in a dedicated directory on the host system (usually /var/lib/docker/volumes).
+    - Volumes allow data persistence even when containers stop or crash.
+
+https://docs.docker.com/engine/storage/volumes/
+https://docs.docker.com/reference/cli/docker/volume/inspect/
+

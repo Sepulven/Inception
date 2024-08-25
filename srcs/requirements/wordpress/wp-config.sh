@@ -1,5 +1,13 @@
 # Downloads the file for wordpress
 
+
+dir_path="/var/www/html/asepulve.42.fr/"
+file_name="wp-config.php"
+if [-d "$dir_path"] && [-f "$dir_path$file_name"]; then
+ echo "All files have been created inside the volume. ";
+ exit 0
+fi
+
 cd /var/www/html
 
 # --silent -> doesn't print anything to the terminal
