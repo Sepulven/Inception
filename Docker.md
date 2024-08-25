@@ -58,3 +58,9 @@ Docker gathers all the files and subdirectories in this directory and sends them
 ### Choosing between RUN, CMD and ENTRYPOINT
 
 https://www.docker.com/blog/docker-best-practices-choosing-between-run-cmd-and-entrypoint/
+
+
+### Note: 25/05/2024
+
+The website files must be in the same container as the socket.
+

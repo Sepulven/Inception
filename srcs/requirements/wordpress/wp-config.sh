@@ -39,6 +39,8 @@ sed -i "s/username_here/$MYSQL_USERNAME" wp-config-sample.php
 sed -i "s/password_here/$MYSQL_PASSWORD" wp-config-sample.php
 sed -i "s/localhost/$MYSQL_LOCALHOST" wp-config-sample.php
 
+mv wp-config-sample.php wp-config.php
+
 echo "Add database config inside the wp-config-sample.php. "
 
 #sed - stream editor for filtering and transforming text 
@@ -55,4 +57,4 @@ mkdir -p /run/php
 
 
 # Looks for the attr. listen inside the www.conf and changes it our port
-sed -i 's|listen = /run/php/php7.4-fpm.sock|listen = 9000|g' /etc/php/7.4/fpm/pool.d/www.conf
+sed -i 's|listen = /run/php/php7.4-fpm.sock|listen = 0.0.0.0:9000|g' /etc/php/7.4/fpm/pool.d/www.conf

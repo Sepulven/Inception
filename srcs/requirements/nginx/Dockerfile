@@ -56,12 +56,10 @@ COPY ./nginx.sh /home/
 
 # Copies the index.html in order to test SSL
 COPY ./index.html /var/www/html/index.html
+COPY ./index.php /var/www/html/index.php
 
 # Grant permission to the script
 RUN chmod +x /home/nginx.sh
-
-# Exposes port 80, no other duty besides documentation.
-EXPOSE 80
 
 # Exposes port 443 for SSL/TLS configuration
 EXPOSE 443
