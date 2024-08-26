@@ -30,6 +30,8 @@ services:
         - "9000:9000"
     networks:
         - inception
+    volumes:
+        - wordpress:/var/www/html
     restart: on-failure
 
 
@@ -37,3 +39,19 @@ networks:
     inception:
         driver: bridge # Eliminates the need for routing between different network segments.
         name: inception # Forces the name of the network ot be inception
+
+volumes:
+    wordpress:
+        driver: local
+        driver_opts:
+           type: "none"
+           o: "bind"
+           device: /home/asepulve/data/wordpress
+
+    mariadb:
+        driver: local 
+        driver_opts:
+           type: "none"
+           o: "bind"
+           device: /home/asepulve/data/mariadb
+

@@ -53,4 +53,9 @@ https://docs.docker.com/compose/networking/
 
 https://docs.docker.com/engine/storage/volumes/
 https://docs.docker.com/reference/cli/docker/volume/inspect/
+https://docs.docker.com/reference/compose-file/volumes/
 
+
+Whenever we start a container the volumes are mounted and they override whateveris at the mount director we are working on.
+
+That is the reason why our wp config script must run as the ENTRYPOINT script.
