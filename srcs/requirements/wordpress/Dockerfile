@@ -62,8 +62,10 @@ RUN apt-get install -y php-zip #  Used for decompressing Plugins, Themes, and Wo
 #Copies the wp_script
 COPY ./wp-config.sh /tmp/wp-config.sh
 
+
 # Changes the permission of the script
 RUN chmod +x /tmp/wp-config.sh
+
 
 
 #RUN /tmp/wp-config.sh
@@ -86,4 +88,8 @@ EXPOSE 9000
 
 #ENTRYPOINT ["/usr/sbin/php-fpm7.4", "--nodaemonize",  "--allow-to-run-as-root"]
 #ENTRYPOINT ["/usr/sbin/php-fpm7.4", "-R",  "-F"]
-ENTRYPOINT ["sh", "-c", "/tmp/wp-config.sh; /usr/sbin/php-fpm7.4 --nodaemonize --allow-to-run-as-root"]
+
+ENTRYPOINT ["sh", "-c",  "/tmp/wp-config.sh"]
+
+#CMD /usr/sbin/php-fpm7.4 --nodaemonize --allow-to-run-as-root
+#ENTRYPOINT ["sh", "-c", "/tmp/wp-config.sh && /usr/sbin/php-fpm7.4 --nodaemonize --allow-to-run-as-root"]

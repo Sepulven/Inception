@@ -4,7 +4,6 @@
 
 
 # NGINX: (Nginx)
-#
 services:
   nginx:
     container_name: nginx
@@ -18,7 +17,6 @@ services:
     restart: on-failure
 
 # Wordpress: (Wordpress+php-fpm) 
-#
   wordpress:
     container_name: wordpress
     build:
