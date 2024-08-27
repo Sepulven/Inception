@@ -1,4 +1,4 @@
-
+#!/bin/bash
 ## The sleep command given time for the mariadb start properly before
 ## executing
 if [ -d "/var/lib/mysql/$DATABASE_NAME"]; 

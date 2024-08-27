@@ -58,17 +58,25 @@ RUN apt-get install -y php-xml # Used for XML parsing, such as from a third-part
 RUN apt-get install -y php-zip #  Used for decompressing Plugins, Themes, and WordPress update packages. 
 
 
+#Install PHP-CLI
+# Link -> https://make.wordpress.org/cli/handbook/guides/installing/
+
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN chmod +x wp-cli.phar
+RUN mv wp-cli.phar /usr/local/bin/wp
+
+
+
 #Copies the wp_script
-COPY ./wp-config.sh /tmp/wp-config.sh
+COPY ./wp-config.sh /home/
 
 
 # Changes the permission of the script
-RUN chmod +x /tmp/wp-config.sh
+RUN chmod +x /home/wp-config.sh
 
 
-
-#RUN /tmp/wp-config.sh
-#RUN rm /tmp/wp-config.sh
+#RUN /home/wp-config.sh
+#RUN rm /home/wp-config.sh
 
 EXPOSE 9000
 
@@ -87,7 +95,7 @@ EXPOSE 9000
 #ENTRYPOINT ["/usr/sbin/php-fpm7.4", "--nodaemonize",  "--allow-to-run-as-root"]
 #ENTRYPOINT ["/usr/sbin/php-fpm7.4", "-R",  "-F"]
 
-ENTRYPOINT ["sh", "-c",  "/tmp/wp-config.sh"]
+ENTRYPOINT ["/home/wp-config.sh"]
 
 #CMD /usr/sbin/php-fpm7.4 --nodaemonize --allow-to-run-as-root
 #ENTRYPOINT ["sh", "-c", "/tmp/wp-config.sh && /usr/sbin/php-fpm7.4 --nodaemonize --allow-to-run-as-root"]

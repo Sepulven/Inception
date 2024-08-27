@@ -10,9 +10,9 @@ RUN apt-get install -y curl vim
 RUN apt-get install -y mariadb-server
 
 # DB config file script
-COPY ./db-config.sh /tmp/db-config.sh
-RUN chmod +x /tmp/db-config.sh
+COPY ./db-config.sh /home/
+RUN chmod +x /home/db-config.sh
 
 EXPOSE 3306
 
-ENTRYPOINT ["sh", "-c",  "/tmp/db-config.sh"]
+ENTRYPOINT ["/home/db-config.sh"]

@@ -1,3 +1,4 @@
+#!/bin/bash
 # Downloads the file for wordpress
 
 dir_path="/var/www/html/asepulve.42.fr/"
@@ -41,13 +42,22 @@ if ! [ -f "$dir_path$file_name" ]; then
 	# "s/old/new" -> the script. It searchs in the file for the value and replace it
 	#It works the same way as vim searching pattern.
 
+	# Creates the DB
 	sed -i "s/database_name_here/$MYSQL_DATABASE_NAME/g" wp-config-sample.php
 	sed -i "s/username_here/$MYSQL_USERNAME/g" wp-config-sample.php
 	sed -i "s/password_here/$MYSQL_PASSWORD/g" wp-config-sample.php
 	sed -i "s/localhost/$MYSQL_HOST/g" wp-config-sample.php
-
 	mv wp-config-sample.php wp-config.php
 
+	# Uses WP-CLI to create a new user
+	# Link -> https://developer.wordpress.org/cli/commands/user/create/
+	wp core install --allow-root --url=$URL --title="Inception" \
+	--admin_user=$WP_ADMIN_USERNAME \
+	--admin_password=$WP_ADMIN_PASSWORD \
+	--admin_email=$WP_ADMIN_EMAIL --skip-email
+	wp create --allow-root $WP_USER_USERNAME $WP_USER_EMAIL "--user_pass=$WP_USER_PASSWORD" --role=author
+
+	#wp create --allow-root $WP_ADMIN_USERNAME $WP_ADMIN_EMAIL "--user_pass=$WP_ADMIN_PASSWORD"
 	echo "Add database config inside the wp-config.php. "
 fi
 
