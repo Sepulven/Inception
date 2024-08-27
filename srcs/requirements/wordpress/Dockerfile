@@ -11,7 +11,6 @@ RUN apt-get install -y curl
 
 RUN apt-get install -y vim
 
-
 #Bash is not nativaly installed
 RUN apt-get install bash
 
@@ -84,7 +83,6 @@ EXPOSE 9000
 
 
 #CMD tail -f > /dev/null
-
 
 #ENTRYPOINT ["/usr/sbin/php-fpm7.4", "--nodaemonize",  "--allow-to-run-as-root"]
 #ENTRYPOINT ["/usr/sbin/php-fpm7.4", "-R",  "-F"]

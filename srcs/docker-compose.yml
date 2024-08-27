@@ -14,6 +14,8 @@ services:
         - "443:443"
     networks:
         - inception
+    env_file:
+      - .env
     restart: on-failure
 
 # Wordpress: (Wordpress+php-fpm) 
@@ -28,10 +30,26 @@ services:
         - "9000:9000"
     networks:
         - inception
+    env_file:
+      - .env
     volumes:
         - wordpress:/var/www/html
     restart: on-failure
 
+  mariadb:
+    container_name: mariadb
+    build:
+        context: ./requirements/mariadb
+        dockerfile: Dockerfile
+    env_file:
+      - .env
+    expose:
+        - "3306"
+    networks:
+        - inception
+    volumes:
+        - mariadb:/var/lib/mysql
+    restart: on-failure
 
 networks:
     inception:

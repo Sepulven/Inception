@@ -59,3 +59,11 @@ https://docs.docker.com/reference/compose-file/volumes/
 Whenever we start a container the volumes are mounted and they override whateveris at the mount director we are working on.
 
 That is the reason why our wp config script must run as the ENTRYPOINT script.
+
+
+
+## Some tips from gade-alm
+
+
+Note: 27/08/2024
+If we do not specify the .env file through the env_file directive the env. variables won't be loaded

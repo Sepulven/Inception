@@ -1,17 +1,16 @@
 # Downloads the file for wordpress
 
-
 dir_path="/var/www/html/asepulve.42.fr/"
 file_name="wp-config.php"
 
 if ! [ -f "$dir_path$file_name" ]; then
-	cd /var/www/html
 
+	cd /var/www/html
 	# --silent -> doesn't print anything to the terminal
 	# -O -> tells curl to save the file as it is named remotely
 	curl --silent -O https://wordpress.org/latest.tar.gz .
 
-	echo "Wordpress files have downloaded"
+	echo "Wordpress files have been downloaded."
 
 	# -x -> extract file
 	# -z -> .gz files
@@ -30,12 +29,18 @@ if ! [ -f "$dir_path$file_name" ]; then
 
 	rm -rf wordpress
 
-	echo "Wordpress files discompressed and in folder"
+	echo "Wordpress files discompressed and in folder."
 
 	cd asepulve.42.fr
 
 	# We will replace the database values with ours
 	# Comes from the .env file
+	#sed - stream editor for filtering and transforming text 
+	# sed [OPTION]... {script-only-if-no-other-script} [input-file]
+	# -i -> changes the actual file
+	# "s/old/new" -> the script. It searchs in the file for the value and replace it
+	#It works the same way as vim searching pattern.
+
 	sed -i "s/database_name_here/$MYSQL_DATABASE_NAME/" wp-config-sample.php
 	sed -i "s/username_here/$MYSQL_USERNAME/" wp-config-sample.php
 	sed -i "s/password_here/$MYSQL_PASSWORD/" wp-config-sample.php
@@ -43,31 +48,16 @@ if ! [ -f "$dir_path$file_name" ]; then
 
 	mv wp-config-sample.php wp-config.php
 
-	echo "Add database config inside the wp-config-sample.php. "
-
-	#sed - stream editor for filtering and transforming text 
-	# sed [OPTION]... {script-only-if-no-other-script} [input-file]
-	# -i -> changes the actual file
-	# "s/old/new" -> the script. It searchs in the file for the value and replace it
-	#It works the same way as vim searching pattern.
-
-
-	# Creates the folder for php
-	mkdir -p /run/php
-
-	# The /run/php directory is a temporary filesystem location used by PHP and its associated processes, like PHP-FPM (FastCGI Process Manager), to store runtime data. Here’s a closer look at its purpose:
-
-
+	echo "Add database config inside the wp-config.php. "
 fi
 
 # Looks for the attr. listen inside the www.conf and changes it our port
 sed -i 's|listen = /run/php/php7.4-fpm.sock|listen = 0.0.0.0:9000|g' /etc/php/7.4/fpm/pool.d/www.conf
 
+# Creates the folder for php
 mkdir -p /run/php
+# The /run/php directory is a temporary filesystem location used by PHP and its associated processes, like PHP-FPM (FastCGI Process Manager), to store runtime data. Here’s a closer look at its purpose:
 touch /run/php/php7.4-fpm.pid
 
-#chown -R nginx:nginx /var/www/html
-
 echo "Starting php-fpm7.4 in the foreground[...]";
-/usr/sbin/php-fpm7.4 -F -R
-
+/usr/sbin/php-fpm7.4 --nodaemonize --allow-to-run-as-root
