@@ -22,11 +22,21 @@ stop:
 down:
 	docker compose -f ./srcs/docker-compose.yml down
 
+prune-volumes:
+	docker system prune --volumes --force
+
+
+# --force -> Skip the confirmation prompt.
+# --all -> all danglings images
+# Cleans up all of the installation proccess.
+prune-images:
+	docker system prune --all --force
+
 # From the evaluation sheet
 clean:
 	docker stop $$(docker ps -qa);
 	docker rm $$(docker ps -qa);
 	docker rmi -f $$(docker images -qa);
-	docker volume rm $$(docker volume ls -q); # => NO VOLUMES YET
-	docker network rm $$(docker network ls -q) 2>/dev/null  # => NO NETWORKS YET
+	docker volume rm $$(docker volume ls -q);
+	docker network rm $$(docker network ls -q) 2>/dev/null
 

@@ -9,3 +9,10 @@
 Exec documentation:
 
 	https://ss64.com/bash/exec.html
+
+
+
+# Note about ssh
+
+We can connect our host machine's vscode to a vm. --> Cool stuff
+If have our vm in the bridge mode we can access it's port through  its ip address in the hostmachine.

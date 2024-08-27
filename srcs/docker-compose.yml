@@ -2,7 +2,6 @@
 
 # The .env file is loaded from the same directory in which the docker-compole.yml file is
 
-
 # NGINX: (Nginx)
 services:
   nginx:
@@ -15,10 +14,15 @@ services:
     networks:
         - inception
     env_file:
-      - .env
+        - .env
+    volumes:
+        - wordpress:/var/www/html
     restart: on-failure
 
 # Wordpress: (Wordpress+php-fpm) 
+# Exposes the port to the host:
+#    ports:
+#        - "9000:9000"
   wordpress:
     container_name: wordpress
     build:
@@ -26,8 +30,6 @@ services:
         dockerfile: Dockerfile
     expose:
         - "9000"
-    ports:
-        - "9000:9000"
     networks:
         - inception
     env_file:
@@ -58,6 +60,7 @@ networks:
 
 volumes:
     wordpress:
+        name: wordpress
         driver: local
         driver_opts:
            type: "none"
@@ -65,6 +68,7 @@ volumes:
            device: /home/asepulve/data/wordpress
 
     mariadb:
+        name: mariadb
         driver: local 
         driver_opts:
            type: "none"

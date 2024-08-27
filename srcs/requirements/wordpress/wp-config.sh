@@ -41,10 +41,10 @@ if ! [ -f "$dir_path$file_name" ]; then
 	# "s/old/new" -> the script. It searchs in the file for the value and replace it
 	#It works the same way as vim searching pattern.
 
-	sed -i "s/database_name_here/$MYSQL_DATABASE_NAME/" wp-config-sample.php
-	sed -i "s/username_here/$MYSQL_USERNAME/" wp-config-sample.php
-	sed -i "s/password_here/$MYSQL_PASSWORD/" wp-config-sample.php
-	sed -i "s/localhost/$MYSQL_LOCALHOST/" wp-config-sample.php
+	sed -i "s/database_name_here/$MYSQL_DATABASE_NAME/g" wp-config-sample.php
+	sed -i "s/username_here/$MYSQL_USERNAME/g" wp-config-sample.php
+	sed -i "s/password_here/$MYSQL_PASSWORD/g" wp-config-sample.php
+	sed -i "s/localhost/$MYSQL_HOST/g" wp-config-sample.php
 
 	mv wp-config-sample.php wp-config.php
 
