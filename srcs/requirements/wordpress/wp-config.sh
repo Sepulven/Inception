@@ -43,7 +43,7 @@ if ! [ -f "$dir_path$file_name" ]; then
 	#It works the same way as vim searching pattern.
 
 	# Creates the DB
-	sed -i "s/database_name_here/$MYSQL_DATABASE_NAME/g" wp-config-sample.php
+	sed -i "s/database_name_here/$MYSQL_DATABASE/g" wp-config-sample.php
 	sed -i "s/username_here/$MYSQL_USERNAME/g" wp-config-sample.php
 	sed -i "s/password_here/$MYSQL_PASSWORD/g" wp-config-sample.php
 	sed -i "s/localhost/$MYSQL_HOST/g" wp-config-sample.php
@@ -56,9 +56,8 @@ if ! [ -f "$dir_path$file_name" ]; then
 	--admin_user=$WP_ADMIN_USERNAME \
 	--admin_password=$WP_ADMIN_PASSWORD \
 	--admin_email=$WP_ADMIN_EMAIL --skip-email
-	wp create --allow-root $WP_USER_USERNAME $WP_USER_EMAIL "--user_pass=$WP_USER_PASSWORD" --role=author
 
-	wp create --allow-root $WP_ADMIN_USERNAME $WP_ADMIN_EMAIL "--user_pass=$WP_ADMIN_PASSWORD"
+	wp create --allow-root $WP_USER_USERNAME $WP_USER_EMAIL "--user_pass=$WP_USER_PASSWORD" --role=author
 
 	echo "Add database config inside the wp-config.php. "
 fi
