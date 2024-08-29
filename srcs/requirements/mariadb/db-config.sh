@@ -13,25 +13,37 @@ then
 	# We need to specify the --socket and --host because these files (my.cnf or my.ini)
 	# does not have the correct access to these attr.
 
+	# It has to be spaces for the indetention of the queries
+
 	mysql --socket=$MYSQL_SOCKET --host=$MYSQL_TCPIP_HOST -uroot --password="" -e "
-        USE \`mysql\`;
-        ALTER USER root@localhost IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';
-        CREATE DATABASE IF NOT EXISTS \`$MYSQL_DATABASE\`;
-        CREATE USER IF NOT EXISTS '$MYSQL_USERNAME'@'%';
-        GRANT ALL PRIVILEGES ON \`$MYSQL_DATABASE\`.* TO '$MYSQL_USERNAME'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';
+        USE 'mysql';
+        ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';
+		FLUSH PRIVILEGES;
+        CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;
+        CREATE USER IF NOT EXISTS '$MYSQL_USERNAME'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';
+        GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USERNAME'@'%';
         FLUSH PRIVILEGES;
         "
-
-	# $? holds the status value of the last executed code
-	# -eq(operator that means equal)
 	if [ $? -eq 0 ]; then
 		echo "MySQL setup completed successfully."
 	else
 		echo "MySQL setup failed."
 	fi
 
+	echo "
+        USE 'mysql';
+        ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';
+        CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;
+        CREATE USER IF NOT EXISTS '$MYSQL_USERNAME'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';
+        GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USERNAME'@'%';
+        FLUSH PRIVILEGES;
+        ";
+
+	# $? holds the status value of the last executed code
+	# -eq(operator that means equal)
+
 	service mariadb stop
-	while mysqladmin ping -u root -p"$MYSQL_ROOT_PASSWORD" --silent; do
+	while mysqladmin ping -u root -p"$MYSQL_ROOT_PASSWORD"; do
 		echo "Waiting for MariaDB to stop..."
 		sleep 2
 	done

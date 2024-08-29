@@ -11,8 +11,12 @@ RUN apt-get install -y curl
 
 RUN apt-get install -y vim
 
+
+#Installing for DEBUG purpose
+RUN apt-get install -y mariadb-client
+
 #Bash is not nativaly installed
-RUN apt-get install bash
+RUN apt-get install -y bash
 
 # List of the php extension recommend for the last version of wordpress
 # List -> https://make.wordpress.org/hosting/2024/07/10/wordpress-6-6-server-compatibility/

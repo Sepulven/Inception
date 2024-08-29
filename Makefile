@@ -41,8 +41,8 @@ prune-network:
 
 # !!! Atenttion need to get fixed
 #
-#prune-volume:
-#	docker volume rm -f m
+prune-volumes:
+	docker volume prune -f
 
 stop-containers:
 	docker stop $$(docker ps -qa)
