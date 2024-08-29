@@ -19,6 +19,21 @@ services:
         - wordpress:/var/www/html
     restart: on-failure
 
+  mariadb:
+    container_name: mariadb
+    build:
+        context: ./requirements/mariadb
+        dockerfile: Dockerfile
+    env_file:
+        - .env
+    expose:
+        - "3306"
+    networks:
+        - inception
+    volumes:
+        - mariadb:/var/lib/mysql
+    restart: on-failure
+
 # Wordpress: (Wordpress+php-fpm) 
 # Exposes the port to the host:
 #    ports:
@@ -28,30 +43,16 @@ services:
     build:
         context: ./requirements/wordpress
         dockerfile: Dockerfile
+    env_file:
+        - .env
     expose:
         - "9000"
     networks:
         - inception
-    env_file:
-      - .env
     volumes:
         - wordpress:/var/www/html
     restart: on-failure
 
-  mariadb:
-    container_name: mariadb
-    build:
-        context: ./requirements/mariadb
-        dockerfile: Dockerfile
-    env_file:
-      - .env
-    expose:
-        - "3306"
-    networks:
-        - inception
-    volumes:
-        - mariadb:/var/lib/mysql
-    restart: on-failure
 
 networks:
     inception:
@@ -60,7 +61,7 @@ networks:
 
 volumes:
     wordpress:
-        name: wordpress
+        #name: wordpress
         driver: local
         driver_opts:
            type: "none"
@@ -68,7 +69,7 @@ volumes:
            device: /home/asepulve/data/wordpress
 
     mariadb:
-        name: mariadb
+        #name: mariadb
         driver: local 
         driver_opts:
            type: "none"

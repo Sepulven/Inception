@@ -32,6 +32,33 @@ prune-volumes:
 prune-images:
 	docker system prune --all --force
 
+prune-container:
+	docker container prune -f
+
+prune-network:
+	docker network prune -f
+
+
+# !!! Atenttion need to get fixed
+#
+#prune-volume:
+#	docker volume rm -f m
+
+stop-containers:
+	docker stop $$(docker ps -qa)
+
+rm-containers:
+	docker rm $$(docker ps -qa)
+
+rm-images:
+	docker rmi -f $$(docker images -qa);
+
+rm-volumes:
+	docker volume rm $$(docker volume ls -q);
+
+rm-network:
+	docker network rm $$(docker network ls -q) 2>/dev/null
+
 # From the evaluation sheet
 clean:
 	docker stop $$(docker ps -qa);
@@ -40,3 +67,4 @@ clean:
 	docker volume rm $$(docker volume ls -q);
 	docker network rm $$(docker network ls -q) 2>/dev/null
 
+#clean: prune-images prune-container prune-network

@@ -47,6 +47,7 @@ if ! [ -f "$dir_path$file_name" ]; then
 	sed -i "s/username_here/$MYSQL_USERNAME/g" wp-config-sample.php
 	sed -i "s/password_here/$MYSQL_PASSWORD/g" wp-config-sample.php
 	sed -i "s/localhost/$MYSQL_HOST/g" wp-config-sample.php
+
 	mv wp-config-sample.php wp-config.php
 
 	# Uses WP-CLI to create a new user
@@ -57,7 +58,8 @@ if ! [ -f "$dir_path$file_name" ]; then
 	--admin_email=$WP_ADMIN_EMAIL --skip-email
 	wp create --allow-root $WP_USER_USERNAME $WP_USER_EMAIL "--user_pass=$WP_USER_PASSWORD" --role=author
 
-	#wp create --allow-root $WP_ADMIN_USERNAME $WP_ADMIN_EMAIL "--user_pass=$WP_ADMIN_PASSWORD"
+	wp create --allow-root $WP_ADMIN_USERNAME $WP_ADMIN_EMAIL "--user_pass=$WP_ADMIN_PASSWORD"
+
 	echo "Add database config inside the wp-config.php. "
 fi
 
