@@ -48,6 +48,8 @@ if ! [ -f "$dir_path$file_name" ]; then
 	sed -i "s/password_here/$MYSQL_PASSWORD/g" wp-config-sample.php
 	sed -i "s/localhost/$MYSQL_HOST/g" wp-config-sample.php
 
+
+	# Mysqlhost I want it to have the port.
 	mv wp-config-sample.php wp-config.php
 
 	# Uses WP-CLI to create a new user
@@ -56,6 +58,7 @@ if ! [ -f "$dir_path$file_name" ]; then
 	--admin_user=$WP_ADMIN_USERNAME \
 	--admin_password=$WP_ADMIN_PASSWORD \
 	--admin_email=$WP_ADMIN_EMAIL --skip-email
+
 
 	wp create --allow-root $WP_USER_USERNAME $WP_USER_EMAIL "--user_pass=$WP_USER_PASSWORD" --role=author
 
