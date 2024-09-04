@@ -16,6 +16,19 @@ If have our vm in the bridge mode we can access it's port through  its ip addres
 # Note about CORS(Cross-Origin Resource Sharing)
 
 
+**We can use this command to test an endpoint as in the browser, curl for CORS error.**
+	curl -i -k -X OPTIONS https://yourdomain.com/your-endpoint
+
+### Small explanation on how I solved my problem
+
+
+I went to the website that explain how to settle CORS error in NGINX, copied the code, tested it.
+Right after I went to the localhost, did not work, the reason on why it did not work was the browser will fail
+the request if the domain we are requesting does not have a valid SSL certificate.
+We went to the domain and accepted it, making that domain to be considered valid by the browser, thus 
+making the CORS request work.
+
+
 Let's begin here: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/CORS
 
 Let's learn about this
@@ -23,6 +36,10 @@ Let's learn about this
 
 !!! AMAZING !!!
 Solution for nginx situation: https://enable-cors.org/
+
+
+### Why CORS request did not succeed?
+https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSDidNotSucceed?utm_source=devtools&utm_medium=firefox-cors-errors&utm_campaign=default
 
 I scrolled down the page about cors and clicked in the link that says enable cors in the backend.
 
