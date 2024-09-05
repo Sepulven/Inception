@@ -60,7 +60,7 @@ if ! [ -f "$dir_path$file_name" ]; then
 	--admin_email=$WP_ADMIN_EMAIL --skip-email
 
 
-	wp create --allow-root $WP_USER_USERNAME $WP_USER_EMAIL "--user_pass=$WP_USER_PASSWORD" --role=author
+	wp user create --allow-root $WP_USER_USERNAME $WP_USER_EMAIL "--user_pass=$WP_USER_PASSWORD" --role=author
 
 	echo "Add database config inside the wp-config.php. "
 fi
