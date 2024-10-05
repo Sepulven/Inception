@@ -25,4 +25,7 @@ RUN apt-get install -y redis
 COPY ./redis-config.sh /home/redis-config.sh
 RUN chmod +x /home/redis-config.sh
 
+# Expose the port 6379 to the Inception network
+EXPOSE 6379
+
 ENTRYPOINT ["/home/redis-config.sh"]
