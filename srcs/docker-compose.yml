@@ -40,7 +40,8 @@ services:
     build:
         context: ./requirements/wordpress
         dockerfile: Dockerfile
-    depends_on:
+    depends_on: # It waits until these services are init. but not started and settled.
+    # For that we will need a healthchek.
         - redis
         - mariadb
     env_file:
@@ -59,7 +60,7 @@ services:
         context: ./requirements/bonus/static_website
         dockerfile: Dockerfile
     ports:
-        - "8080:8080"
+        - "3000:3000"
     env_file:
         - .env
     restart: on-failure

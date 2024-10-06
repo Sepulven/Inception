@@ -10,12 +10,15 @@ then
 	# it is from where we are going to clone the website
 	git clone "https://$GITHUB_TOKEN@github.com/sepulven/start-upper-pages_deprecated" "/home/start_upper"
 
+
+	## Port 8080 will be used by nginx.
+	sed -i "s/8080/3000/g" /home/start_upper/app.js
+
 	npm install
 	npm install --save-dev nodemon
 else
 	echo "Start-Upper is already installed"
 fi
-
 
 
 cd /home/start_upper
