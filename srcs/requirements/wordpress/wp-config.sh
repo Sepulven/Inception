@@ -63,6 +63,23 @@ if ! [ -f "$dir_path$file_name" ]; then
 	wp user create --allow-root $WP_USER_USERNAME $WP_USER_EMAIL "--user_pass=$WP_USER_PASSWORD" --role=author
 
 	echo "Add database config inside the wp-config.php. "
+
+
+	# BONUS PART - Redis Cache definition
+
+	# For all of these commands we could have used the sed command in the same way.
+	wp config set WP_REDIS_HOST my-redis
+	wp config set WP_REDIS_PORT 6379
+
+	# In the following line is an example
+	sed -i "s/WP_REDIS_DATABASE/0/g" wp-config-sample.php
+
+
+
+
+
+
+
 fi
 
 # Looks for the attr. listen inside the www.conf and changes it our port
