@@ -38,7 +38,6 @@ prune-container:
 prune-network:
 	docker network prune -f
 
-
 # !!! Atenttion need to get fixed
 stop-containers:
 	docker stop $$(docker ps -qa)

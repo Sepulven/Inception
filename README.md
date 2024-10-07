@@ -175,3 +175,4 @@ We only the see the CORS error when in the ```localhost``` not in our actual dom
 It says that it is blocking because we can't access the resource asepulve.42.fr
 and when we are in different domain browser triggers the CORS error.
 
+We must accept the certificate in asepulve.42.fr url or the CORS error won't go away.
