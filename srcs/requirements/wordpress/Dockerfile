@@ -15,6 +15,12 @@ RUN apt-get install -y vim
 #Installing for DEBUG purpose
 RUN apt-get install -y mariadb-client
 
+#Installing for DEBUG purpose
+RUN apt-get install -y redis-tools
+#redis-cli -h redis -p 6379 ping
+#redis-cli -h redis -p 6379 SET my_key
+#redis-cli -h redis -p 6379 GET my_key
+
 #Bash is not nativaly installed
 RUN apt-get install -y bash
 

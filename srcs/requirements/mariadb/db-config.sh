@@ -1,5 +1,4 @@
 #!/bin/bash
-#tail -f 2> /dev/null
 
 if ! [ -d "/var/lib/mysql/$MYSQL_DATABASE" ]; 
 then
@@ -34,12 +33,6 @@ then
         echo "MySQL setup failed:"
     fi
     echo "mysql $__MYSQL_FLAGS -uroot --password='' -e '$__QUERY'"
-
-    # service mariadb stop 2> /dev/null > /dev/null
-    # while mysqladmin $__MYSQL_FLAGS ping -u root -p"$MYSQL_ROOT_PASSWORD" 2> /dev/null; do
-    #     echo "Waiting for MariaDB to stop..."
-    #     sleep 2
-    # done
 
     echo "We are going to kill all of the process of mysqld after mysql shutdown.";
     for PID in $(ps aux | grep '[m]ysqld' | awk '{print $2}'); do

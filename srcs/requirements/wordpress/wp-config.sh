@@ -48,8 +48,7 @@ if ! [ -f "$dir_path$file_name" ]; then
 	sed -i "s/password_here/$MYSQL_PASSWORD/g" wp-config-sample.php
 	sed -i "s/localhost/$MYSQL_HOST/g" wp-config-sample.php
 
-
-	# Mysqlhost I want it to have the port.
+# Mysqlhost I want it to have the port.
 	mv wp-config-sample.php wp-config.php
 
 	# Uses WP-CLI to create a new user
@@ -68,18 +67,13 @@ if ! [ -f "$dir_path$file_name" ]; then
 	# BONUS PART - Redis Cache definition
 
 	# For all of these commands we could have used the sed command in the same way.
-	wp config set WP_REDIS_HOST my-redis
-	wp config set WP_REDIS_PORT 6379
+	wp config set WP_REDIS_HOST redis --allow-root
+	wp config set WP_REDIS_PORT 6379 --raw --allow-root
 
-	# In the following line is an example
-	sed -i "s/WP_REDIS_DATABASE/0/g" wp-config-sample.php
-
-
-
-
-
-
-
+	wp config set WP_CACHE_KEY_SALT $URL --allow-root
+	wp plugin install redis-cache --activate --allow-root
+	wp plugin update --all --allow-root
+	wp redis enable --allow-root
 fi
 
 # Looks for the attr. listen inside the www.conf and changes it our port
