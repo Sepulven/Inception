@@ -1,5 +1,5 @@
-
-if ! [ -f "/etc/vsftpd.conf.bak"];
+#!/bin/bash
+if [ ! -f "/etc/vsftpd.conf.bak"];
 then
 
 	# Creates a backup of the default configuration file
@@ -43,7 +43,11 @@ then
 	# We are going to be appending this content to the /etc/vsftp.conf
 	echo $__FTP_CONFIG >> /etc/vsftpd.conf
 
+    echo $FTP_USER_NAME| tee -a /etc/vsftpd.userlist &> /dev/null
 else
 	echo "FTP server has been configured!"
 fi
 
+
+echo "Starting ftp server on port 21..."
+vsftp /etc/vsftpd.conf

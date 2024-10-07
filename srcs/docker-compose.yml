@@ -79,12 +79,12 @@ services:
     restart: on-failure
 
   ftp:
-    container_name: redis
+    container_name: ftp
     build:
       context: ./requirements/bonus/ftp
       dockerfile: Dockerfile
       args:
-          FTP_USER_NAME: ${FTP_USER_NAME}, 
+          FTP_USER_NAME: ${FTP_USER_NAME} 
           FTP_USER_PASSWORD: ${FTP_USER_PASSWORD}
     env_file:
         - .env
