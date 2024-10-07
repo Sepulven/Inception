@@ -78,6 +78,24 @@ services:
         - inception
     restart: on-failure
 
+  ftp:
+    container_name: redis
+    build:
+      context: ./requirements/bonus/ftp
+      dockerfile: Dockerfile
+      args:
+          FTP_USER_NAME: ${FTP_USER_NAME}, 
+          FTP_USER_PASSWORD: ${FTP_USER_PASSWORD}
+    env_file:
+        - .env
+    ports:
+        - "21:21"
+        - "21100-21110:21100-21110"
+    networks:
+        - inception
+    volumes:
+        - wordpress:/var/www/html
+    restart: on-failure
 
 
 networks:
