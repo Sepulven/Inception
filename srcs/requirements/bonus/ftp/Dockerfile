@@ -21,7 +21,6 @@ RUN apt-get install -y vsftpd
 
 RUN apt-get install -y passwd
 
-#RUN adduser --disabled-password $FTP_USER_NAME
 RUN mkdir -p /home/vsftpd
 RUN adduser --disabled-password --home /home/vsftpd $FTP_USER_NAME
 # -D -> create user with defualt option(no password, no special shell settings)  --disabled-password 
@@ -45,5 +44,17 @@ RUN chown $FTP_USER_NAME:$FTP_USER_NAME /var/www/html
 COPY ftp-config.sh /home/
 RUN chmod +x /home/ftp-config.sh
 
-
 ENTRYPOINT ["/home/ftp-config.sh"]
+
+# In order to test it:
+# On the host machine:
+	# 1 -> Install ftp client
+	#	sudo apt-get install ftp
+	# 2
+	# In the host machine we must allow the ports to works
+	# sudo ufw enable
+	# sudo ufw status verbose
+	# sudo ufw allow 21/tcp
+	# sudo ufw allow 21100:21110/tcp
+	# 2 -> Run the client (it by default assumes that it will be the port 21)
+	# 	ftp localhost
