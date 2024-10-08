@@ -16,3 +16,5 @@ RUN chmod +x /home/db-config.sh
 EXPOSE 3306
 
 ENTRYPOINT ["/home/db-config.sh"]
+
+#mysql -h mariadb -P 3306 -u root -p$MYSQL_ROOT_PASSWORD

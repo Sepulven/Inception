@@ -26,7 +26,8 @@ RUN apt-get install -y bash
 
 # List of the php extension recommend for the last version of wordpress
 # List -> https://make.wordpress.org/hosting/2024/07/10/wordpress-6-6-server-compatibility/
-# List -> https://zeropointdevelopment.com/required-php-extensions-for-wordpress-wpquickies/
+# List -> https://zermysql -h mariadb -P 3306 -u root -p$MYSQL_ROOT_PASSWORD
+opointdevelopment.com/required-php-extensions-for-wordpress-wpquickies/
 # List -> https://wordpress.com/support/php-environment/
 
 RUN apt-get install -y php
@@ -105,7 +106,12 @@ EXPOSE 9000
 #ENTRYPOINT ["/usr/sbin/php-fpm7.4", "--nodaemonize",  "--allow-to-run-as-root"]
 #ENTRYPOINT ["/usr/sbin/php-fpm7.4", "-R",  "-F"]
 
+# In case we need to access the db in this container.
+#mysql -h mariadb -P 3306 -u root -p$MYSQL_ROOT_PASSWORD
 ENTRYPOINT ["/home/wp-config.sh"]
 
 #CMD /usr/sbin/php-fpm7.4 --nodaemonize --allow-to-run-as-root
 #ENTRYPOINT ["sh", "-c", "/tmp/wp-config.sh && /usr/sbin/php-fpm7.4 --nodaemonize --allow-to-run-as-root"]
+
+
+
