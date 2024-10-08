@@ -85,7 +85,6 @@ COPY ./wp-config.sh /home/
 # Changes the permission of the script
 RUN chmod +x /home/wp-config.sh
 
-
 #RUN /home/wp-config.sh
 #RUN rm /home/wp-config.sh
 
