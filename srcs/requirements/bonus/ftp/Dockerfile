@@ -26,14 +26,13 @@ RUN apt-get install -y vsftpd
 #passwd also changes the account or associated password validity period.
 RUN apt-get install -y passwd
 
-
 # We have to be sure we will have the user directory
-RUN mkdir -p /var/www/html/$FTP_USER_NAME
+RUN mkdir -p /var/www/html/
 
 # --disabled-password  -> no password, no special shell settings
 # -h -> tell where the home will
 # $FTP_USER_NAME is the newly created user
-RUN adduser --disabled-password --home /var/www/html/$FTP_USER_NAME $FTP_USER_NAME
+RUN adduser --disabled-password --home /var/www/html/ $FTP_USER_NAME
 
 # If the user has been created successfully we can then change its password
 
@@ -41,12 +40,8 @@ RUN adduser --disabled-password --home /var/www/html/$FTP_USER_NAME $FTP_USER_NA
 #or (when USER omitted) for the  current user.
 RUN id $FTP_USER_NAME && echo "$FTP_USER_NAME:$FTP_USER_PASSWORD" | chpasswd
 
-# Grant the permission to the user
-RUN chown $FTP_USER_NAME:$FTP_USER_NAME /var/www/html/$FTP_USER_NAME
-RUN chmod u=rwx,g=rx,o=rx /var/www/html/$FTP_USER_NAME
-
 # Grant permission to the ftp server
-RUN chown $FTP_USER_NAME:$FTP_USER_NAME /var/www/html/$FTP_USER_NAME
+#RUN chown $FTP_USER_NAME:$FTP_USER_NAME /var/www/html/
 
 COPY ftp-config.sh /home/
 RUN chmod +x /home/ftp-config.sh
