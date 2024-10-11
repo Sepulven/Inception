@@ -9,8 +9,13 @@ services:
     build:
         context: ./requirements/nginx
         dockerfile: Dockerfile
+    depends_on:
+        - wordpress
+        - adminer
+        - mariadb
     ports:
-        - "443:443"
+        - "443:443" ## SSL port
+        - "4000:4000" ## Our custom port for Adminer
     networks:
         - inception
     env_file:
@@ -100,20 +105,24 @@ services:
   adminer:
     container_name: adminer
     build:
-      context: ./requirements/bonus/ftp
+      context: ./requirements/bonus/adminer
       dockerfile: Dockerfile
     depends_on:
         - mariadb
     env_file:
         - .env
+    expose:
+        - "9001"
     networks:
         - inception
+    volumes:
+        - wordpress:/var/www/html
     restart: on-failure
 
 networks:
     inception:
         driver: bridge # Eliminates the need for routing between different network segments.
-        name: inception # Forces the name of the network ot be inception
+        name: inception # Forces the name of the network to be inception
 
 volumes:
     wordpress:
