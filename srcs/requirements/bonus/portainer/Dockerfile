@@ -2,10 +2,9 @@
 #TCP tunnel server over port 8000
 FROM debian:bullseye
 
-#Portainer step by step guide:
+#Portainer step by step guide installation:
 #https://www.atlantic.net/dedicated-server-hosting/how-to-install-portainer-docker-ui-web-interface-on-debian/
 #https://docs.portainer.io/start/install/server/docker/linux
-
 #https://www.howtoforge.com/how-to-install-portainer-on-debian-11/
 
 #Portainer architecture

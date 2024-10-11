@@ -136,6 +136,19 @@ services:
         - portainer_data:/data
     restart: on-failure
 
+  jekyll:
+    container_name: jekyll
+    build:
+      context: ./requirements/bonus/jekyll
+      dockerfile: Dockerfile
+    env_file:
+        - .env
+    ports:
+        - "4001:4001"
+    volumes:
+        - wordpress:/var/www/html
+    restart: on-failure
+
 networks:
     inception:
         driver: bridge # Eliminates the need for routing between different network segments.
