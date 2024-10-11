@@ -27,7 +27,7 @@ RUN apt-get install -y bash
 # List of the php extension recommend for the last version of wordpress
 # List -> https://make.wordpress.org/hosting/2024/07/10/wordpress-6-6-server-compatibility/
 # List -> https://zermysql -h mariadb -P 3306 -u root -p$MYSQL_ROOT_PASSWORD
-opointdevelopment.com/required-php-extensions-for-wordpress-wpquickies/
+# List -> https://zeropointdevelopment.com/required-php-extensions-for-wordpress-wpquickies/
 # List -> https://wordpress.com/support/php-environment/
 
 RUN apt-get install -y php
