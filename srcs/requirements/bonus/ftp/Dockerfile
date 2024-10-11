@@ -32,7 +32,7 @@ RUN mkdir -p /var/www/html/
 # --disabled-password  -> no password, no special shell settings
 # -h -> tell where the home will
 # $FTP_USER_NAME is the newly created user
-RUN adduser --disabled-password --home /var/www/html/ $FTP_USER_NAME
+RUN adduser --disabled-password --home /var/www/html ${FTP_USER_NAME}
 
 # If the user has been created successfully we can then change its password
 
@@ -69,3 +69,4 @@ ENTRYPOINT ["/home/ftp-config.sh"]
 	# (binary) -> in case we need to put binaries files like photos
 	# 5 -> lcd <path>->local change directory, to go to the the local directory
 	# 6 -> put command
+	# 7 -> get command

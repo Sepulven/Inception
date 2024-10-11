@@ -58,7 +58,6 @@ if ! [ -f "$dir_path$file_name" ]; then
 	--admin_password=$WP_ADMIN_PASSWORD \
 	--admin_email=$WP_ADMIN_EMAIL --skip-email
 
-
 	wp user create --allow-root $WP_USER_USERNAME $WP_USER_EMAIL "--user_pass=$WP_USER_PASSWORD" --role=author
 
 	echo "Add database config inside the wp-config.php. "
@@ -85,4 +84,5 @@ mkdir -p /run/php
 touch /run/php/php7.4-fpm.pid
 
 echo "Starting php-fpm7.4 in the foreground[...]";
+
 /usr/sbin/php-fpm7.4 --nodaemonize --allow-to-run-as-root
