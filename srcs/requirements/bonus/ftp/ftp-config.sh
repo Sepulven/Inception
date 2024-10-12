@@ -24,5 +24,3 @@ fi
 echo "Starting ftp server on port 21..."
 vsftpd /etc/vsftpd.conf
 echo "We could not start the ftp server"
-
-tail -f

@@ -14,12 +14,18 @@ RUN apt-get install -y vim
 
 # Following the step by step of documentation
 ## Add the repository to the APT index, update it, and install Redis:
-RUN apt-get install  -y lsb-release curl gpg
-RUN curl -fsSL https://packages.redis.io/gpg | gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
-RUN chmod 644 /usr/share/keyrings/redis-archive-keyring.gpg
-RUN echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" |  tee /etc/apt/sources.list.d/redis.list
-RUN apt-get update
-RUN apt-get install -y redis
+
+# This version is not working on the school internet.
+
+# RUN apt-get install  -y lsb-release curl gpg
+# RUN curl -fsSL https://packages.redis.io/gpg | gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+# RUN chmod 644 /usr/share/keyrings/redis-archive-keyring.gpg
+# RUN echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" |  tee /etc/apt/sources.list.d/redis.list
+# RUN apt-get update
+# RUN apt-get install -y redis
+
+RUN apt-get update && apt-get install -y redis-server
+
 
 
 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under 

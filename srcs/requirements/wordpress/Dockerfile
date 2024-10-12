@@ -90,17 +90,12 @@ RUN chmod +x /home/wp-config.sh
 
 EXPOSE 9000
 
-#CMD tail -f > /dev/null
-
 # Runs php-fpm in foreground mode
 
 # Manual for php-fpm7.4 ->  https://manpages.debian.org/bullseye/php7.4-fpm/php-fpm7.4.8.en.html
 
 # -R --allow-to-run-as-root -> Allows pool to run as root
 # -F --nodaemonize -> Force to stay in foreground and ignore daemonize option from configuration file.
-
-
-#CMD tail -f > /dev/null
 
 #ENTRYPOINT ["/usr/sbin/php-fpm7.4", "--nodaemonize",  "--allow-to-run-as-root"]
 #ENTRYPOINT ["/usr/sbin/php-fpm7.4", "-R",  "-F"]

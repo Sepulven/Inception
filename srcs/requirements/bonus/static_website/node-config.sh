@@ -5,7 +5,7 @@
 if ! [ -f "/home/start_upper/package.json" ];
 then
 
-	mkdir /home/start_upper
+	mkdir -p /home/start_upper
 	# $TOKEN -> is the enviroment variable used to access all of my private repositories,
 	# it is from where we are going to clone the website
 	git clone "https://$GITHUB_TOKEN@github.com/sepulven/start-upper-pages_deprecated" "/home/start_upper"

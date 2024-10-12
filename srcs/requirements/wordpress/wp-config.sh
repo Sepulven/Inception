@@ -69,10 +69,13 @@ if ! [ -f "$dir_path$file_name" ]; then
 	wp config set WP_REDIS_HOST redis --allow-root
 	wp config set WP_REDIS_PORT 6379 --raw --allow-root
 
-	wp config set WP_CACHE_KEY_SALT $URL --allow-root
+	wp config set WP_CACHE_KEY_SALT $REDIS_PREFIX --allow-root
 	wp plugin install redis-cache --activate --allow-root
 	wp plugin update --all --allow-root
 	wp redis enable --allow-root
+
+	#wp cache set your_key "your_value" --allow-root
+	#wp cache get your_key --allow-root
 fi
 
 # Looks for the attr. listen inside the www.conf and changes it our port

@@ -33,4 +33,3 @@ fi
 
 echo "Adminer is running in the foreground..."
 /usr/sbin/php-fpm7.4 --nodaemonize --allow-to-run-as-root
-tail -f
