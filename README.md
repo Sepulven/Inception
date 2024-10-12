@@ -176,3 +176,51 @@ It says that it is blocking because we can't access the resource asepulve.42.fr
 and when we are in different domain browser triggers the CORS error.
 
 We must accept the certificate in asepulve.42.fr url or the CORS error won't go away.
+
+
+
+
+--------------------------------------
+
+
+SSH connection to make the host from 42 Lisbon campus communicate with the VirtualMachine.
+
+
+##Host Machine
+
+Given that we might have a NAT network adapter
+Go to:
+
+Setttings -> Network -> Advanced -> Port Forwading
+
+Add a new rule:
+
+Name:ssh
+Protocol: TCP
+Host IP (blank)
+Host Port 2222
+Guest IP (blank)
+Guest Port 22
+
+Since we are using port forwarding we can connect to the machine with:
+
+we do not need to specify the vbox ip.
+
+ssh -p 2222 asepulve_42@localhost
+
+
+
+##Virtual Machine
+
+
+##Enable ssh
+sudo systemctl enable ssh
+sudo systemctl start ssh
+sudo systemctl status ssh
+
+
+###To get the host IP
+hostname -I
+
+##Command to transfer the files(works like ftp)
+scp -P 2222 -r /path/to/folder username@VM_IP:/path/to/destination
