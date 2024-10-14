@@ -5,6 +5,9 @@
 all : build
 
 build:
+	mkdir -p ~/data/portainer_data
+	mkdir -p ~/data/mariadb
+	mkdir -p ~/data/wordpress
 	docker compose -f ./srcs/docker-compose.yml build
 
 # The process of the container is running:
@@ -56,7 +59,7 @@ rm-network:
 
 # From the evaluation sheet
 clean:
-	rm -rf ~/data/wordpress/* ~/data/mariadb/* ~/data/portainer_data/*
+	rm -rf ~/data/
 	docker stop $$(docker ps -qa);
 	docker rm $$(docker ps -qa);
 	docker rmi -f $$(docker images -qa);
